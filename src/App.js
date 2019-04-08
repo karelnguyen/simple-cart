@@ -1,28 +1,34 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import styled from "styled-components";
+import ProductList from "./containers/ProductList";
+import Cart from "./containers/Cart";
+import Navbar from "./components/Navbar";
+import coffees from "./coffees";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
+const App = () => (
+  <Router>
+    <Navbar />
+    <Parent>
+      <Route
+        exact
+        path="/"
+        component={() => <ProductList coffees={coffees} />}
+      />
+      <Route path="/cart" component={Cart} />
+    </Parent>
+  </Router>
+);
+
+const Parent = styled.div`
+  margin-left: auto;
+  margin-right: auto;
+  width: 800px;
+  height: 100vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 export default App;
