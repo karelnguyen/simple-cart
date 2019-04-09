@@ -22,7 +22,7 @@ const cart = (state = [], action) => {
       }
     case "REMOVE_ITEM":
       let prevQuantity = state[index]["quantity"];
-      if (prevQuantity < action.quantity) {
+      if (prevQuantity <= action.quantity) {
         return state.filter(({ id }) => id !== action.id);
       } else {
         state[index]["quantity"] =
