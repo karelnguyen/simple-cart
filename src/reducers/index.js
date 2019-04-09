@@ -1,16 +1,10 @@
 import { combineReducers } from "redux";
 
-/**
- * Adding coffees to cart
- * @param  {Array}  [state=[]]
- * @param  {Object} action
- * @return {Array}
- */
 const cart = (state = [], action) => {
+  let index = state.findIndex(el => el.id === action.id);
   switch (action.type) {
     case "ADD_ITEM":
       // Preventing duplicate items
-      let index = state.findIndex(el => el.id === action.id);
       if (index === -1) {
         return [
           ...state,
@@ -22,8 +16,17 @@ const cart = (state = [], action) => {
           }
         ];
       } else {
-        // Rozsirit o mazani itemu
-        state[index]["quantity"] = Number(state[index]["quantity"]) + Number(action.quantity);
+        state[index]["quantity"] =
+          Number(state[index]["quantity"]) + Number(action.quantity);
+        return state;
+      }
+    case "REMOVE_ITEM":
+      let prevQuantity = state[index]["quantity"];
+      if (prevQuantity < action.quantity) {
+        return state.filter(({ id }) => id !== action.id);
+      } else {
+        state[index]["quantity"] =
+          Number(prevQuantity) - Number(action.quantity);
         return state;
       }
     default:

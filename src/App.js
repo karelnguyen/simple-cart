@@ -24,7 +24,6 @@ const Parent = styled.div`
   margin-left: auto;
   margin-right: auto;
   width: 800px;
-  height: 100vh;
   color: white;
   display: flex;
   flex-direction: column;

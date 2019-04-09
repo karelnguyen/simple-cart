@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { addItem } from "../actions";
 import Button from "../components/Button";
 import Title from "../components/Title";
+import NumberInput from '../components/NumberInput'
 import Colors from "../colors";
 
 const createFormData = data => {
@@ -71,23 +72,6 @@ const ProductWrapper = styled.div`
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-`;
-
-const NumberInput = styled.div`
-  margin-right: 20px;
-  input {
-    width: 45px;
-    height: 42px;
-    line-height: 1.65;
-    float: left;
-    display: block;
-    padding: 0;
-    margin: 0;
-    padding-left: 20px;
-    border: 1px solid ${Colors.mint};
-    background: transparent;
-    color: white;
-  }
 `;
 
 export default connect()(ProductList);
